@@ -48,19 +48,22 @@ function askQuestion() {
 function gradeQuiz(candidateAnswers) {
 
   //TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
+  let correctCounter = 0;
   for (let i = 0; i < questions.length; i++) {
-    if (candidateAnswers[i] === correctAnswers[i]) {
+    if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) {
       console.log(`Your answer to question ${i+1} is correct! You said ${candidateAnswers[i]} and the correct answer is ${correctAnswers[i]}.`);
+      correctCounter++;
     } else {
       console.log(`Your answer to question ${i+1} is incorrect. You said ${candidateAnswers[i]} and the correct answer is ${correctAnswers[i]}.`)
     }
   }
 
-
-
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
-
-
+  let grade = (correctCounter / questions.length) * 100;  //TODO 3.2 use this variable to calculate the candidates score.
+  if (grade >= 80) {
+    console.log(`Hooray, you passed! Your score was ${grade}%. :)`)
+  } else {
+    console.log(`Sorry, you didn't pass. Your score was ${grade}%, and you need at least an 80% score to pass. :(`)
+  }
   return grade;
 }
 
